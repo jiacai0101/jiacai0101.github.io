@@ -6,7 +6,7 @@ export const THEMES: Record<string, Theme> = {
     light_default: {
         background: "#fdfdfd",
         foreground: "#282728",
-        accent: "#006cac",
+        accent: "#024973",
         muted: "#6b7280",
         border: "#ece9e9",
         surface: "#f4f4f4",

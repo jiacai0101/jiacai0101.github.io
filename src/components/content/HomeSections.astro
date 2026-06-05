@@ -23,7 +23,7 @@ const selected = wanted
 {
     selected.length > 0 && (
         <section class="news-section">
-            <h2 class="section-heading title-lg">{t("home.selected")}</h2>
+            <h2 class="section-heading title-lg"><span class="section-emoji">⭐</span>{t("home.selected")}</h2>
             <section class="item-list">
                 {selected.map((entry) => (
                     <BaseItemCard
@@ -37,7 +37,7 @@ const selected = wanted
 }
 
 <section class="news-section">
-    <h2 class="section-heading title-lg">{t("home.research")}</h2>
+    <h2 class="section-heading title-lg"><span class="section-emoji">🧬</span>{t("home.research")}</h2>
     <ul class="news-list">
         {profile.research.map((area) => (
             <li class="card">
@@ -49,14 +49,14 @@ const selected = wanted
 </section>
 
 <section class="news-section">
-    <h2 class="section-heading title-lg">{t("home.skills")}</h2>
+    <h2 class="section-heading title-lg"><span class="section-emoji">🛠️</span>{t("home.skills")}</h2>
     <div class="flex flex-wrap gap-2">
         {profile.skills.map((skill) => <span class="tag">{skill}</span>)}
     </div>
 </section>
 
 <section class="news-section">
-    <h2 class="section-heading title-lg">{t("home.platforms")}</h2>
+    <h2 class="section-heading title-lg"><span class="section-emoji">🚀</span>{t("home.platforms")}</h2>
     <div class="platform-grid">
         {profile.platforms.map((p) => (
             <a

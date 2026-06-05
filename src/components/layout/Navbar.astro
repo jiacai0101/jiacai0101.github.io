@@ -1,14 +1,10 @@
 ---
 import { NAV_LINKS, PAGES } from "../../config";
 import Icon from "../ui/Icon.astro";
-import { getLangFromUrl, useTranslations, localizePath } from "../../i18n/ui";
+import { useTranslations } from "../../i18n/ui";
 
-const url = Astro.url;
-const lang = getLangFromUrl(url);
-const t = useTranslations(lang);
-
-const pathNoLocale =
-    lang === "zh" ? url.pathname.replace(/^\/zh/, "") || "/" : url.pathname;
+const t = useTranslations("en");
+const currentPath = Astro.url.pathname;
 
 const KEY: Record<string, string> = {
     "/": "about",
@@ -24,29 +20,23 @@ const KEY: Record<string, string> = {
 const links = NAV_LINKS.filter((link) => {
     // Search is rendered as an icon button, not a text link.
     if (link.href === "/search") return false;
-    if (lang === "zh" && link.href === "/tags") return false;
     const isHome = link.href === "/";
     const pageKey = isHome ? "home" : link.href.split("/").filter(Boolean)[0];
     const pageConfig = (PAGES as any)[pageKey];
     return link.isActive !== false && pageConfig?.active !== false;
 });
-
-const enOnlySection = pathNoLocale.startsWith("/tags");
-const enHref = pathNoLocale;
-const zhHref = enOnlySection ? "/zh" : localizePath(pathNoLocale, "zh");
 ---
 
 <header class="navbar">
     <ul class="nav-links">
         {
             links.map((link) => {
-                const href = localizePath(link.href, lang);
                 const isActive =
-                    pathNoLocale === link.href ||
-                    (link.href !== "/" && pathNoLocale.startsWith(link.href));
+                    currentPath === link.href ||
+                    (link.href !== "/" && currentPath.startsWith(link.href));
                 return (
                     <li>
-                        <a href={href} class={`nav-link ${isActive ? "active" : "inactive"}`}>
+                        <a href={link.href} class={`nav-link ${isActive ? "active" : "inactive"}`}>
                             {t(`nav.${KEY[link.href] ?? "about"}`)}
                         </a>
                     </li>
@@ -56,16 +46,11 @@ const zhHref = enOnlySection ? "/zh" : localizePath(pathNoLocale, "zh");
     </ul>
 
     <div class="nav-actions">
-        <a class="nav-icon" href={localizePath("/archives", lang)} aria-label={t("nav.archives")} title={t("nav.archives")}>
+        <a class="nav-icon" href="/archives" aria-label={t("nav.archives")} title={t("nav.archives")}>
             <Icon name="Archive" size={20} />
         </a>
-        <a class="nav-icon" href={localizePath("/search", lang)} aria-label={t("nav.search")} title={t("nav.search")}>
+        <a class="nav-icon" href="/search" aria-label={t("nav.search")} title={t("nav.search")}>
             <Icon name="Search" size={20} />
         </a>
-        <span class="lang-switch">
-            <a href={enHref} class={lang === "en" ? "active" : ""} hreflang="en">EN</a>
-            <span aria-hidden="true">/</span>
-            <a href={zhHref} class={lang === "zh" ? "active" : ""} hreflang="zh">中文</a>
-        </span>
     </div>
 </header>

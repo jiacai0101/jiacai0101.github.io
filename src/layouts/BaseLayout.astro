@@ -82,6 +82,7 @@ const jsonLd = {
                 --background: var(--lightBg);
                 --foreground: var(--lightFg);
                 --accent: var(--lightAccent);
+                --accent-2: #8b2635;
                 --text-muted: var(--lightMuted);
                 --border: var(--lightBorder);
                 --surface: var(--lightSurface);
@@ -92,6 +93,7 @@ const jsonLd = {
                 --background: var(--darkBg);
                 --foreground: var(--darkFg);
                 --accent: var(--darkAccent);
+                --accent-2: #e0707c;
                 --text-muted: var(--darkMuted);
                 --border: var(--darkBorder);
                 --surface: var(--darkSurface);
@@ -219,6 +221,13 @@ const jsonLd = {
     <body
         class="bg-background text-foreground transition-colors duration-300 min-h-screen"
     >
+        {
+            ogType === "article" && (
+                <div class="reading-progress-container">
+                    <div class="reading-progress-bar" id="reading-progress-bar" />
+                </div>
+            )
+        }
         <div class="flex max-lg:flex-col mx-auto max-w-6xl w-full min-h-screen">
             <LeftSidebar />
             <RightMain>
@@ -227,5 +236,26 @@ const jsonLd = {
         </div>
 
         <BackToTop />
+
+        <script is:inline>
+            function initReadingProgress() {
+                const bar = document.getElementById("reading-progress-bar");
+                const update = () => {
+                    const b = document.getElementById("reading-progress-bar");
+                    if (!b) return;
+                    const h = document.documentElement;
+                    const scrolled = document.body.scrollTop || h.scrollTop;
+                    const height = h.scrollHeight - h.clientHeight;
+                    b.style.width = height > 0 ? (scrolled / height) * 100 + "%" : "0%";
+                };
+                update();
+                if (!window.__readingProgressInit) {
+                    window.__readingProgressInit = true;
+                    document.addEventListener("scroll", update, { passive: true });
+                }
+            }
+            initReadingProgress();
+            document.addEventListener("astro:page-load", initReadingProgress);
+        </script>
     </body>
 </html>
