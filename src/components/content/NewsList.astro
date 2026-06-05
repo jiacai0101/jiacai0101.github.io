@@ -1,0 +1,32 @@
+---
+import { NEWS } from "../../data/news";
+
+interface Props {
+    limit?: number;
+}
+
+const { limit } = Astro.props;
+const items = [...NEWS]
+    .sort((a, b) => b.sortDate.localeCompare(a.sortDate))
+    .slice(0, limit ?? NEWS.length);
+---
+
+<ul class="news-list">
+    {
+        items.map((item) => (
+            <li class="card">
+                <div class="card-meta flex items-center gap-2">
+                    <span class="tag">{item.badge}</span>
+                    <span class="mono body-xs">{item.date}</span>
+                </div>
+                <div class="card-title-text title-md">{item.title}</div>
+                <p class="card-desc body-sm">{item.description}</p>
+                {item.link && (
+                    <a class="link body-sm" href={item.link.url} target="_blank" rel="noopener noreferrer">
+                        {item.link.text} →
+                    </a>
+                )}
+            </li>
+        ))
+    }
+</ul>

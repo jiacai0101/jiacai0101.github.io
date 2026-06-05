@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="ABC-Net: a divide-and-conquer based deep learning architecture for SMILES recognition from molecular images">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#163144"/>
+      <stop offset="100%" stop-color="#3a6b84"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="36" fill="url(#bg)"/>
+  <rect x="28" y="28" width="1144" height="574" rx="28" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.16)"/>
+  <text x="56" y="84" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="#d7e1ec">Journal Paper</text>
+  <text x="1144" y="84" text-anchor="end" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#d7e1ec">2022</text>
+  <text x="56" y="160" font-family="Georgia, 'Times New Roman', serif" font-size="33" font-weight="700" fill="#ffffff"><tspan x="56" dy="0">ABC-Net: a divide-and-conquer</tspan><tspan x="56" dy="41">based deep learning architecture</tspan><tspan x="56" dy="41">for SMILES recognition from</tspan><tspan x="56" dy="41">molecular images</tspan></text>
+  <line x1="56" y1="432" x2="1144" y2="432" stroke="rgba(255,255,255,0.22)"/>
+  <text x="56" y="492" font-family="Georgia, 'Times New Roman', serif" font-size="28" fill="#eef3f8">Briefings in Bioinformatics</text>
+  <text x="56" y="540" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#d7e1ec">bib2022-abc-net</text>
+</svg>

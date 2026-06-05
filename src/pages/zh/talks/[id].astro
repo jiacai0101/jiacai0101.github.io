@@ -1,0 +1,17 @@
+---
+import { getCollection } from "astro:content";
+import BaseDetail from "../../../layouts/BaseDetail.astro";
+import { stripLocaleId } from "../../../i18n/ui";
+
+export async function getStaticPaths() {
+    const entries = (await getCollection("talks")).filter((e: any) => e.id.startsWith("zh/"));
+    return entries.map((e: any) => ({
+        params: { id: stripLocaleId(e.id) },
+        props: { fullId: e.id },
+    }));
+}
+
+const { fullId } = Astro.props;
+---
+
+<BaseDetail collection="talks" id={fullId} locale="zh" />

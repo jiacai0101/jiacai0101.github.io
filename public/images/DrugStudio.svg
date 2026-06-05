@@ -1,0 +1,43 @@
+<svg width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dsBlue" x1="42" y1="48" x2="98" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#B7D6E4"/>
+      <stop offset="1" stop-color="#88ABC0"/>
+    </linearGradient>
+    <linearGradient id="dsGold" x1="132" y1="62" x2="184" y2="166" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E1C36B"/>
+      <stop offset="1" stop-color="#C89B3D"/>
+    </linearGradient>
+    <linearGradient id="dsRing" x1="22" y1="20" x2="196" y2="198" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#304136"/>
+      <stop offset="1" stop-color="#243127"/>
+    </linearGradient>
+    <filter id="dsShadow" x="-10" y="-10" width="240" height="240" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#182018" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#dsShadow)">
+    <path
+      d="M61 24C93 18 129 18 160 24C181 29 195 43 199 64C204 91 204 126 198 154C194 178 179 193 156 198C126 203 94 204 63 199C39 194 24 178 20 154C16 126 16 93 21 65C25 43 39 29 61 24Z"
+      stroke="url(#dsRing)"
+      stroke-width="14"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+    />
+
+    <rect x="42" y="44" width="38" height="22" rx="11" fill="url(#dsBlue)" stroke="#263329" stroke-width="4" transform="rotate(-28 42 44)"/>
+    <rect x="34" y="82" width="40" height="22" rx="11" fill="url(#dsBlue)" stroke="#263329" stroke-width="4" transform="rotate(6 34 82)"/>
+    <rect x="38" y="120" width="39" height="22" rx="11" fill="url(#dsBlue)" stroke="#263329" stroke-width="4" transform="rotate(29 38 120)"/>
+    <rect x="54" y="156" width="36" height="21" rx="10.5" fill="url(#dsBlue)" stroke="#263329" stroke-width="4" transform="rotate(-42 54 156)"/>
+
+    <rect x="136" y="54" width="32" height="52" rx="10" fill="url(#dsGold)" stroke="#263329" stroke-width="4" transform="rotate(32 136 54)"/>
+    <rect x="150" y="128" width="22" height="50" rx="11" fill="url(#dsGold)" stroke="#263329" stroke-width="4" transform="rotate(37 150 128)"/>
+
+    <circle cx="100" cy="110" r="5.5" fill="#EDE6D5"/>
+    <circle cx="72" cy="56" r="3" fill="#EDE6D5" opacity="0.6"/>
+    <circle cx="66" cy="100" r="3" fill="#EDE6D5" opacity="0.55"/>
+    <circle cx="76" cy="142" r="3" fill="#EDE6D5" opacity="0.55"/>
+  </g>
+</svg>

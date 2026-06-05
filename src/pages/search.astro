@@ -1,0 +1,60 @@
+---
+import "@pagefind/default-ui/css/ui.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { PAGES } from "../config";
+
+const title = "Search";
+const subtitle = "Search across publications, projects, and blog posts.";
+const bundlePath = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/pagefind/`;
+---
+
+<BaseLayout title={title}>
+    <div class="container-narrow">
+        <header class="page-header">
+            <h1 class="page-title">{title}</h1>
+            <p class="page-subtitle">{subtitle}</p>
+        </header>
+
+        <div id="pagefind-search" data-bundle-path={bundlePath}></div>
+    </div>
+</BaseLayout>
+
+<script>
+    function initSearch() {
+        const el = document.querySelector<HTMLElement>("#pagefind-search");
+        if (!el) return;
+        if (el.querySelector("form")) return; // already initialized
+
+        const bundlePath = el.dataset.bundlePath;
+        if (!bundlePath) return;
+
+        const params = new URLSearchParams(window.location.search);
+        const onIdle = window.requestIdleCallback || ((cb: () => void) => setTimeout(cb, 1));
+
+        onIdle(async () => {
+            if (import.meta.env.DEV) {
+                el.innerHTML =
+                    '<p class="body" style="opacity:.75">Search works after a production build. Run <code>npm run build &amp;&amp; npm run preview</code> to test it locally.</p>';
+                return;
+            }
+            // @ts-expect-error — no types for @pagefind/default-ui
+            const { PagefindUI } = await import("@pagefind/default-ui");
+            const search = new PagefindUI({
+                element: "#pagefind-search",
+                bundlePath,
+                showImages: false,
+                showSubResults: true,
+                processTerm: (term: string) => {
+                    params.set("q", term);
+                    history.replaceState(history.state, "", "?" + params.toString());
+                    return term;
+                },
+            });
+            const query = params.get("q");
+            if (query) search.triggerSearch(query);
+        });
+    }
+
+    document.addEventListener("astro:after-swap", initSearch);
+    initSearch();
+</script>

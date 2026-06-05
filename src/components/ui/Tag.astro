@@ -1,0 +1,17 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+    name: string;
+    count?: number;
+    size?: "sm" | "md" | "lg";
+}
+
+const { name, count, size = "md" } = Astro.props;
+const iconSize = size === "lg" ? 18 : size === "sm" ? 14 : 16;
+---
+
+<a href={`/tags/${name.toLowerCase()}`} class={`tag-link tag-${size}`}>
+    <Icon name="Hash" size={iconSize} class="tag-hash" />
+    <span>{name}{count !== undefined && ` (${count})`}</span>
+</a>

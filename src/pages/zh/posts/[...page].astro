@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import BaseListing from "../../../layouts/BaseListing.astro";
+import { SITE } from "../../../config";
+import { useTranslations } from "../../../i18n/ui";
+
+export async function getStaticPaths({ paginate }: any) {
+    const posts = (await getCollection("posts")).filter((p: any) => p.id.startsWith("zh/"));
+    const sorted = posts.sort(
+        (a: any, b: any) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+    );
+    return paginate(sorted, { pageSize: SITE.postPerPage });
+}
+
+const { page } = Astro.props;
+const t = useTranslations("zh");
+---
+
+<BaseListing
+    collection="posts"
+    locale="zh"
+    title={t("page.blog.title")}
+    subtitle={t("page.blog.subtitle")}
+    page={page}
+/>

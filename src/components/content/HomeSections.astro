@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import BaseItemCard from "../ui/BaseItemCard.astro";
+import { getListingItem } from "../../utils/adapters";
+import { getProfile, SELECTED_PUB_IDS } from "../../data/profile";
+import { useTranslations, localizePath, stripLocaleId, type Lang } from "../../i18n/ui";
+
+interface Props {
+    locale: Lang;
+}
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const profile = getProfile(locale);
+
+// Selected publications, resolved from the collection for the current locale.
+const pubs = await getCollection("publications");
+const wanted = SELECTED_PUB_IDS.map((id) => (locale === "zh" ? `zh/${id}` : id));
+const selected = wanted
+    .map((w) => pubs.find((p: any) => p.id === w))
+    .filter(Boolean) as any[];
+---
+
+{
+    selected.length > 0 && (
+        <section class="news-section">
+            <h2 class="section-heading title-lg">{t("home.selected")}</h2>
+            <section class="item-list">
+                {selected.map((entry) => (
+                    <BaseItemCard
+                        {...getListingItem(entry)}
+                        href={localizePath(`/publications/${stripLocaleId(entry.id)}`, locale)}
+                    />
+                ))}
+            </section>
+        </section>
+    )
+}
+
+<section class="news-section">
+    <h2 class="section-heading title-lg">{t("home.research")}</h2>
+    <ul class="news-list">
+        {profile.research.map((area) => (
+            <li class="card">
+                <div class="card-title-text title-md">{area.title}</div>
+                <p class="body-sm body-muted">{area.focus}</p>
+            </li>
+        ))}
+    </ul>
+</section>
+
+<section class="news-section">
+    <h2 class="section-heading title-lg">{t("home.skills")}</h2>
+    <div class="flex flex-wrap gap-2">
+        {profile.skills.map((skill) => <span class="tag">{skill}</span>)}
+    </div>
+</section>
+
+<section class="news-section">
+    <h2 class="section-heading title-lg">{t("home.platforms")}</h2>
+    <div class="platform-grid">
+        {profile.platforms.map((p) => (
+            <a
+                class="platform-card"
+                href={p.url || p.image}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src={p.image} alt={p.name} class="platform-logo" loading="lazy" />
+                <div>
+                    <div class="card-title-text title-md">{p.name}</div>
+                    <p class="body-sm body-muted">{p.description}</p>
+                </div>
+            </a>
+        ))}
+    </div>
+</section>

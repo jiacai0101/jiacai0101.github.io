@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import { localizePath, stripLocaleId, type Lang } from "../../i18n/ui";
+
+interface Props {
+    locale: Lang;
+}
+const { locale } = Astro.props;
+const isZh = (id: string) => id.startsWith("zh/");
+
+const posts = (await getCollection("posts"))
+    .filter((p: any) => (locale === "zh" ? isZh(p.id) : !isZh(p.id)))
+    .sort((a: any, b: any) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// Group by year (newest first).
+const byYear = new Map<string, any[]>();
+for (const post of posts) {
+    const year = String(post.data.date || "").slice(0, 4) || "—";
+    if (!byYear.has(year)) byYear.set(year, []);
+    byYear.get(year)!.push(post);
+}
+const years = [...byYear.keys()].sort((a, b) => b.localeCompare(a));
+
+const fmtDate = (d: string) =>
+    new Date(d).toLocaleDateString(locale === "zh" ? "zh-CN" : "en-US", { month: "short", day: "numeric" });
+---
+
+<div class="archive">
+    {
+        years.map((year) => (
+            <section class="archive-year">
+                <h2 class="section-heading title-lg">{year}</h2>
+                <ul class="archive-list">
+                    {byYear.get(year)!.map((post) => (
+                        <li class="archive-item">
+                            <span class="archive-date mono body-sm">{fmtDate(post.data.date)}</span>
+                            <a class="card-title" href={localizePath(`/posts/${stripLocaleId(post.id)}`, locale)}>
+                                {post.data.title}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        ))
+    }
+</div>

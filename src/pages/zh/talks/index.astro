@@ -1,0 +1,12 @@
+---
+import BaseListing from "../../../layouts/BaseListing.astro";
+import { useTranslations } from "../../../i18n/ui";
+const t = useTranslations("zh");
+---
+
+<BaseListing
+    collection="talks"
+    locale="zh"
+    title={t("page.talks.title")}
+    subtitle={t("page.talks.subtitle")}
+/>

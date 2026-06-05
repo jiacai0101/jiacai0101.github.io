@@ -1,0 +1,79 @@
+---
+import { SITE, SOCIALS, SOCIAL_ICONS } from "../../config";
+import { getEntry } from "astro:content";
+import Icon from "../ui/Icon.astro";
+import { Image } from 'astro:assets';
+import { getLangFromUrl } from "../../i18n/ui";
+import { getProfile } from "../../data/profile";
+
+const lang = getLangFromUrl(Astro.url);
+const activeSocials = SOCIALS.filter((s) => s.isActive);
+const bioEntry = await getEntry("bio", lang === "zh" ? "bio-zh" : "bio");
+const bio = bioEntry?.data;
+const profile = getProfile(lang);
+const interestsLabel = lang === "zh" ? "研究方向" : "Interests";
+---
+
+<aside class="sidebar max-lg:flex-row max-lg:flex-wrap max-lg:gap-3 max-md:gap-2">
+    <div class="flex flex-col items-center text-center max-lg:flex-row max-lg:text-left max-lg:gap-3 max-lg:items-center max-md:gap-2">
+        {bio?.avatar && (
+            <Image
+                src={`/${bio.avatar}`}
+                alt={`Avatar of ${bio.name}`}
+                width={160} /* Maximum width in global.css for sidebar-avatar class */
+                height={160}
+                densities={[1.5, 2]} 
+                format="webp"
+                class="sidebar-avatar"
+                loading="eager"
+            />
+        )}
+        <div class="flex flex-col items-center max-lg:items-start">
+            {bio?.name && <h1 class="sidebar-name">{bio.name}</h1>}
+            {bio?.institution && (
+                <p class="sidebar-info">{bio.institution}</p>
+            )}
+            {bio?.shortBio && (
+                <p class="sidebar-bio mt-2 max-md:hidden">{bio.shortBio}</p>
+            )}
+            <div class="flex gap-1 flex-wrap items-center justify-center max-lg:justify-start mt-3">
+                {activeSocials.map((social) => (
+                    <a
+                        href={social.href}
+                        aria-label={social.linkTitle}
+                        title={social.linkTitle}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="social-link"
+                    >
+                        <Icon name={SOCIAL_ICONS[social.name] || social.name} size={24} />
+                    </a>
+                ))}
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-extra">
+        <div class="sidebar-contact">
+            <a class="sidebar-contact-item" href={`mailto:${profile.email}`}>
+                <Icon name="Mail" size={16} />
+                <span>{profile.email}</span>
+            </a>
+            <span class="sidebar-contact-item">
+                <Icon name="MapPin" size={16} />
+                <span>{profile.location}</span>
+            </span>
+        </div>
+
+        {profile.keywords.length > 0 && (
+            <div class="sidebar-keywords">
+                <h2 class="sidebar-section-title">{interestsLabel}</h2>
+                <div class="sidebar-keyword-list">
+                    {profile.keywords.map((k) => (
+                        <span class="sidebar-keyword">{k}</span>
+                    ))}
+                </div>
+            </div>
+        )}
+    </div>
+</aside>

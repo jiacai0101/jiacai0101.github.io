@@ -1,0 +1,65 @@
+---
+import Icon from "../ui/Icon.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/ui";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div id="btt-container" class="btt-container">
+    <button data-button="back-to-top" class="btt-btn group" aria-label={t("btt.label")} title={t("btt.label")}>
+        <span id="btt-progress" class="btt-progress" aria-hidden="true"></span>
+        <Icon name="ArrowUp" size={18} class="btt-arrow" />
+        <span class="btt-text">{t("btt.label")}</span>
+    </button>
+</div>
+
+<script is:inline data-astro-rerun>
+    function initBackToTop() {
+        const root = document.documentElement;
+        const container = document.querySelector("#btt-container");
+        const btn = document.querySelector("[data-button='back-to-top']");
+        const progress = document.querySelector("#btt-progress");
+        if (!container || !btn || !progress) return;
+
+        btn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        let lastVisible = null;
+        function handleScroll() {
+            const scrollTotal = root.scrollHeight - root.clientHeight;
+            const scrollTop = root.scrollTop || document.body.scrollTop;
+            const pct = scrollTotal > 0 ? Math.floor((scrollTop / scrollTotal) * 100) : 0;
+
+            progress.style.setProperty(
+                "background-image",
+                `conic-gradient(var(--accent), var(--accent) ${pct}%, transparent ${pct}%)`
+            );
+
+            const isVisible = scrollTotal > 0 && scrollTop / scrollTotal > 0.3;
+            if (isVisible !== lastVisible) {
+                container.classList.toggle("show", isVisible);
+                lastVisible = isVisible;
+            }
+        }
+
+        let ticking = false;
+        document.addEventListener(
+            "scroll",
+            () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        handleScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            },
+            { passive: true }
+        );
+        handleScroll();
+    }
+    initBackToTop();
+    document.addEventListener("astro:page-load", initBackToTop);
+</script>
