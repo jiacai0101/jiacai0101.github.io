@@ -10,6 +10,9 @@ tags:
   - Molecular Image Captioning
   - Encoder-Decoder
   - Bioinformatics
+authorRole: First author
+impactFactor: 5.4
+quartile: JCR Q1
 ---
 
 Automatic recognition of chemical structures from molecular images provides an important avenue for the rediscovery of chemicals. Traditional rule-based approaches rely on expert knowledge and struggle with diverse drawing styles. We propose MICER, which leverages a pre-trained encoder on large-scale molecular images to learn robust visual representations, coupled with an attention-based decoder to translate molecular images into SMILES strings. Fine-tuning the pre-trained model dramatically boosts performance on molecular image captioning benchmarks, achieving state-of-the-art optical chemical structure recognition accuracy.

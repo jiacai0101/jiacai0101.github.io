@@ -18,6 +18,10 @@ export interface ListingItem {
     tags: string[];
     externalUrl?: string;
     image?: string;
+    authorRole?: string;
+    impactFactor?: number;
+    quartile?: string;
+    highlight?: string;
 }
 
 export interface DetailItem extends ListingItem {

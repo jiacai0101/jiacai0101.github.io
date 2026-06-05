@@ -11,6 +11,16 @@ export interface Platform {
     url?: string;
 }
 
+export interface Stat {
+    value: string;
+    label: string;
+}
+
+export interface SkillGroup {
+    category: string;
+    items: string[];
+}
+
 interface ProfileData {
     research: ResearchArea[];
     skills: string[];
@@ -18,6 +28,15 @@ interface ProfileData {
     keywords: string[];
     email: string;
     location: string;
+    cvUrl: string;
+    office: string;
+    status: string;
+    scholarUrl: string;
+    citations: number;
+    hIndex: number;
+    logo: string; // affiliation logo path; "" hides it
+    stats: Stat[];
+    skillGroups: SkillGroup[];
 }
 
 // IDs from the publications collection to feature on the home page.
@@ -42,6 +61,26 @@ const PROFILE: Record<Lang, ProfileData> = {
         keywords: ["AI Drug Design", "Diffusion Models", "Graph Neural Networks", "LLMs for Science"],
         email: "yjc0101@hkbu.edu.hk",
         location: "Hong Kong",
+        cvUrl: "/cv",
+        office: "School of Chinese Medicine, HKBU · Kowloon Tong, Hong Kong",
+        status: "Open to research collaborations",
+        scholarUrl: "https://scholar.google.com.hk/citations?user=jkrVys8AAAAJ",
+        citations: 4693,
+        hIndex: 12,
+        logo: "", // set to e.g. "/images/hkbu-logo.png" once the logo file is added
+        stats: [
+            { value: "10", label: "First / co-first SCI papers" },
+            { value: "4,600+", label: "Google Scholar citations" },
+            { value: "10+", label: "Open-source platforms" },
+            { value: "5.5M+", label: "Platform visits" },
+            { value: "100+", label: "Countries reached" },
+            { value: "5", label: "Software copyrights" },
+        ],
+        skillGroups: [
+            { category: "AI & ML", items: ["PyTorch", "Diffusion Models", "Graph Neural Networks", "Large Language Models"] },
+            { category: "Drug Discovery", items: ["ADMET Prediction", "Molecular Generation", "Structure-based Drug Design", "Molecular Docking"] },
+            { category: "Development", items: ["Python", "Full-stack Web", "Low-code Architecture", "Microservices", "API Design"] },
+        ],
     },
     zh: {
         research: [
@@ -57,6 +96,26 @@ const PROFILE: Record<Lang, ProfileData> = {
         keywords: ["AI 药物设计", "扩散模型", "图神经网络", "科学大语言模型"],
         email: "yjc0101@hkbu.edu.hk",
         location: "香港",
+        cvUrl: "/cv",
+        office: "香港浸会大学中医药学院 · 香港九龙塘",
+        status: "开放科研合作",
+        scholarUrl: "https://scholar.google.com.hk/citations?user=jkrVys8AAAAJ",
+        citations: 4693,
+        hIndex: 12,
+        logo: "",
+        stats: [
+            { value: "10", label: "一作/共一 SCI 论文" },
+            { value: "4,600+", label: "Google Scholar 引用" },
+            { value: "10+", label: "开源平台" },
+            { value: "5.5M+", label: "平台访问量" },
+            { value: "100+", label: "覆盖国家" },
+            { value: "5", label: "软件著作权" },
+        ],
+        skillGroups: [
+            { category: "AI 与机器学习", items: ["PyTorch", "扩散模型", "图神经网络", "大语言模型"] },
+            { category: "药物发现", items: ["ADMET 预测", "分子生成", "基于结构的药物设计", "分子对接"] },
+            { category: "工程开发", items: ["Python", "全栈 Web", "低代码架构", "微服务", "API 设计"] },
+        ],
     },
 };
 

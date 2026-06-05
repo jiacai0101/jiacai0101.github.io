@@ -11,6 +11,10 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 const profile = getProfile(locale);
+const platformsCaption =
+    locale === "zh"
+        ? "10+ 开源平台 · 5.5M+ 访问 · 覆盖 100+ 国家 · 5 项软件著作权"
+        : "10+ open-source platforms · 5.5M+ visits from 100+ countries · 5 software copyrights";
 
 // Selected publications, resolved from the collection for the current locale.
 const pubs = await getCollection("publications");
@@ -49,14 +53,8 @@ const selected = wanted
 </section>
 
 <section class="news-section">
-    <h2 class="section-heading title-lg"><span class="section-emoji">🛠️</span>{t("home.skills")}</h2>
-    <div class="flex flex-wrap gap-2">
-        {profile.skills.map((skill) => <span class="tag">{skill}</span>)}
-    </div>
-</section>
-
-<section class="news-section">
     <h2 class="section-heading title-lg"><span class="section-emoji">🚀</span>{t("home.platforms")}</h2>
+    <p class="section-caption body-sm body-muted">{platformsCaption}</p>
     <div class="platform-grid">
         {profile.platforms.map((p) => (
             <a

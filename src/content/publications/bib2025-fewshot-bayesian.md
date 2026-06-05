@@ -10,6 +10,9 @@ tags:
   - Few-Shot Learning
   - Bayesian Meta-Learning
   - Low-Data Drug Discovery
+authorRole: First author
+impactFactor: 7.7
+quartile: JCR Q1
 ---
 
 Hunting for candidate compounds with favorable pharmacological, toxicological, and pharmacokinetic properties in drug discovery is essentially a low-data problem, as data acquisition is both challenging and expensive. We propose DS-Meta, a Bayesian meta-learning hypernetwork framework that generates task-adaptive model parameters conditioned on limited support examples. By integrating directed message-passing neural networks with molecular descriptors and a Bayesian hypernetwork for uncertainty-aware task adaptation, DS-Meta pushes the boundaries of few-shot molecular property prediction, consistently outperforming existing methods on multiple benchmark datasets across diverse low-data drug discovery scenarios.

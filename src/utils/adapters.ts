@@ -9,7 +9,7 @@ function formatDate(dateValue: string | Date | undefined): string | undefined {
 
 export function getListingItem(entry: any, collection?: string): ListingItem {
     const d = entry.data;
-    
+
     return {
         title: d.title,
         description: d.description,
@@ -19,6 +19,10 @@ export function getListingItem(entry: any, collection?: string): ListingItem {
         tags: d.tags || [],
         externalUrl: d.external_url,
         image: d.image,
+        authorRole: d.authorRole,
+        impactFactor: d.impactFactor,
+        quartile: d.quartile,
+        highlight: d.highlight,
     };
 }
 

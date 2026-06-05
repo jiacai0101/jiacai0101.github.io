@@ -11,6 +11,9 @@ tags:
   - Deep Learning
   - Multi-Objective Optimization
   - ADMET
+authorRole: First author
+impactFactor: 7.7
+quartile: JCR Q1
 ---
 
 Drug discovery and development constitute a laborious and costly undertaking. The success of a drug hinges not only on good efficacy but also on acceptable ADMET properties. ChemMORT is an automatic ADMET optimization platform that combines a neural network-based molecular translation model for invertible molecular representation with multi-objective particle swarm optimization (MOPSO) to search the continuous latent space for molecules with simultaneously improved ADMET profiles. The platform enables global optimization of multiple pharmacokinetic and toxicity endpoints while preserving structural validity and synthetic accessibility.

@@ -1,17 +1,14 @@
 ---
-import { SITE, SOCIALS, SOCIAL_ICONS } from "../../config";
+import { SOCIALS, SOCIAL_ICONS } from "../../config";
 import { getEntry } from "astro:content";
 import Icon from "../ui/Icon.astro";
 import { Image } from 'astro:assets';
 import { getLangFromUrl } from "../../i18n/ui";
-import { getProfile } from "../../data/profile";
 
 const lang = getLangFromUrl(Astro.url);
 const activeSocials = SOCIALS.filter((s) => s.isActive);
 const bioEntry = await getEntry("bio", lang === "zh" ? "bio-zh" : "bio");
 const bio = bioEntry?.data;
-const profile = getProfile(lang);
-const interestsLabel = lang === "zh" ? "研究方向" : "Interests";
 ---
 
 <aside class="sidebar max-lg:flex-row max-lg:flex-wrap max-lg:gap-3 max-md:gap-2">
@@ -51,29 +48,5 @@ const interestsLabel = lang === "zh" ? "研究方向" : "Interests";
                 ))}
             </div>
         </div>
-    </div>
-
-    <div class="sidebar-extra">
-        <div class="sidebar-contact">
-            <a class="sidebar-contact-item" href={`mailto:${profile.email}`}>
-                <Icon name="Mail" size={16} />
-                <span>{profile.email}</span>
-            </a>
-            <span class="sidebar-contact-item">
-                <Icon name="MapPin" size={16} />
-                <span>{profile.location}</span>
-            </span>
-        </div>
-
-        {profile.keywords.length > 0 && (
-            <div class="sidebar-keywords">
-                <h2 class="sidebar-section-title">{interestsLabel}</h2>
-                <div class="sidebar-keyword-list">
-                    {profile.keywords.map((k) => (
-                        <span class="sidebar-keyword">{k}</span>
-                    ))}
-                </div>
-            </div>
-        )}
     </div>
 </aside>

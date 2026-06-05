@@ -1,0 +1,23 @@
+---
+import { getProfile } from "../../data/profile";
+import type { Lang } from "../../i18n/ui";
+
+interface Props {
+    locale: Lang;
+}
+const { locale } = Astro.props;
+const stats = getProfile(locale).stats;
+---
+
+{
+    stats.length > 0 && (
+        <section class="stats-strip">
+            {stats.map((s) => (
+                <div class="stat-cell">
+                    <div class="stat-value">{s.value}</div>
+                    <div class="stat-label">{s.label}</div>
+                </div>
+            ))}
+        </section>
+    )
+}

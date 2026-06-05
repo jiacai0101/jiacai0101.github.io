@@ -13,6 +13,10 @@ const publications = defineCollection({
         image: z.string().optional(),
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
+        authorRole: z.string().optional(),    // "First author" | "Co-first author"
+        impactFactor: z.number().optional(),  // journal IF
+        quartile: z.string().optional(),       // "JCR Q1"
+        highlight: z.string().optional(),      // e.g. "Cited 2,500+"
     }),
 });
 
@@ -73,6 +77,7 @@ const cv = defineCollection({
             institution: z.string(),
             period: z.string(),
             description: z.string(),
+            logo: z.string().optional(),
         })).optional(),
         education: z.array(z.object({
             degree: z.string(),

@@ -10,6 +10,9 @@ tags:
   - Drug Interaction
   - Database
   - Clinical Decision Making
+authorRole: Co-first author
+impactFactor: 13.1
+quartile: JCR Q1
 ---
 
 Drug-drug interaction (DDI) can trigger many adverse effects in patients and has emerged as a threat to medicine and public health. We present DDInter, a curated DDI database with comprehensive data, practical medication guidance, intuitive function interface, and powerful visualization. DDInter contains about 0.24M DDI associations connecting 1,833 approved drugs. Each interaction is annotated with severity, mechanism description, management strategies, and alternative medications. A prescription checking function is provided to help clinicians decide whether drug combinations can be used safely.

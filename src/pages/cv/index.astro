@@ -16,7 +16,7 @@ if (!cvEntry) {
 }
 
 const { Content } = await render(cvEntry);
-const { name, title, experience = [], education = [] } = cvEntry.data;
+const { experience = [] } = cvEntry.data;
 ---
 
 <BaseLayout title={PAGES.cv.title}>
@@ -30,36 +30,20 @@ const { name, title, experience = [], education = [] } = cvEntry.data;
             experience.length > 0 && (
                 <section class="section">
                     <h2 class="section-title border-b border-border pb-2">
-                        Professional Experience
+                        Experience
                     </h2>
                     <Timeline items={experience.map(exp => ({
                         title: exp.role,
                         subtitle: exp.institution,
                         period: exp.period,
-                        description: exp.description
+                        description: exp.description,
+                        logo: exp.logo
                     }))} />
                 </section>
             )
         }
 
-        {
-            education.length > 0 && (
-                <section class="section">
-                    <h2 class="section-title border-b border-border pb-2">
-                        Education
-                    </h2>
-                    <Timeline items={education.map(edu => ({
-                        title: edu.degree,
-                        subtitle: edu.institution,
-                        period: edu.period,
-                        description: edu.description,
-                        thesis: edu.thesis
-                    }))} />
-                </section>
-            )
-        }
-
-        <div class="prose max-w-none">
+        <div class="prose max-w-none cv-body">
             <Content />
         </div>
     </div>

@@ -10,6 +10,9 @@ tags:
   - Molecular Docking
   - Deep Learning
   - Drug Discovery
+authorRole: Co-first author
+impactFactor: 7.4
+quartile: JCR Q1
 ---
 
 Structure-based molecular docking, a cornerstone of computational drug design, is undergoing a paradigm shift fueled by deep learning (DL) innovations. However, the rapid proliferation of DL-driven docking methods raises critical questions about their true capabilities, generalizability, and practical limitations. This work presents a systematic benchmarking framework that decodes the boundaries and failure modes of DL-based molecular docking across diverse drug discovery scenarios, including cross-domain generalization, binding pose prediction under protein flexibility, and virtual screening enrichment, providing actionable insights for method selection and future development.
