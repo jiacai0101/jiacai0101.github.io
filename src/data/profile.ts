@@ -9,6 +9,7 @@ export interface Platform {
     description: string;
     image: string;
     url?: string;
+    qr?: string; // hover QR popover (e.g. WeChat official account)
 }
 
 export interface Stat {
@@ -56,7 +57,7 @@ const PROFILE: Record<Lang, ProfileData> = {
         skills: ["AI + Science", "Diffusion Models", "Graph Neural Networks", "Large Language Models", "High-Performance Computing", "Scientific Platform Engineering"],
         platforms: [
             { name: "DrugStudio", description: "A one-stop intelligent drug design platform for molecular modeling and scientific workflows.", image: "/images/DrugStudio.svg" },
-            { name: "MindDance", description: "WeChat official account sharing research notes, ideas, and updates on AI for drug discovery.", image: "/images/MindDance.jpg" },
+            { name: "MindDance", description: "WeChat official account sharing research notes, ideas, and updates on AI for drug discovery.", image: "/images/MindDance.jpg", qr: "/images/minddance-qr.jpg" },
         ],
         keywords: ["AI Drug Design", "Diffusion Models", "Graph Neural Networks", "LLMs for Science"],
         email: "yjc0101@hkbu.edu.hk",

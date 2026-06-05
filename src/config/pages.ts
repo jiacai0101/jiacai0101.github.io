@@ -19,7 +19,7 @@ export const PAGES: PagesConfig = {
     talks: {
         title: "Talks & Presentations",
         subtitle: "Invited talks, conference presentations, and training lectures.",
-        isActive: true,
+        isActive: false,
     },
     projects: {
         title: "Projects & Platforms",

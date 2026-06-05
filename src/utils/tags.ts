@@ -2,11 +2,10 @@ import { getCollection } from 'astro:content';
 
 export async function getAllTags() {
     const publications = await getCollection('publications');
-    const talks = await getCollection('talks');
     const projects = await getCollection('projects');
     const posts = await getCollection('posts');
 
-    const allEntries = [...publications, ...talks, ...projects, ...posts]
+    const allEntries = [...publications, ...projects, ...posts]
         .filter((e) => !e.id.startsWith("zh/"));
     const tags: Record<string, number> = {};
 
@@ -29,7 +28,6 @@ export async function getContentByTag(tag: string) {
     const normalizedSearchTag = tag.toLowerCase();
 
     const publications = await getCollection('publications');
-    const talks = await getCollection('talks');
     const projects = await getCollection('projects');
     const posts = await getCollection('posts');
 
@@ -41,7 +39,6 @@ export async function getContentByTag(tag: string) {
 
     return [
         ...publications.filter(filterFn).map(e => ({ ...e, collection: 'publications' })),
-        ...talks.filter(filterFn).map(e => ({ ...e, collection: 'talks' })),
         ...projects.filter(filterFn).map(e => ({ ...e, collection: 'projects' })),
         ...posts.filter(filterFn).map(e => ({ ...e, collection: 'posts' })),
     ].sort((a, b) => {

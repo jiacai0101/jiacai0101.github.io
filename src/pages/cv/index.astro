@@ -1,5 +1,5 @@
 ---
-import { getEntry, render } from "astro:content";
+import { getEntry, getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Timeline from "../../components/ui/Timeline.astro";
 import { PAGES } from "../../config";
@@ -17,6 +17,13 @@ if (!cvEntry) {
 
 const { Content } = await render(cvEntry);
 const { experience = [] } = cvEntry.data;
+
+// Talks & Presentations (folded in from the talks collection).
+const talks = (await getCollection("talks"))
+    .filter((t: any) => !t.id.startsWith("zh/"))
+    .sort((a: any, b: any) => new Date(b.data.date || 0).getTime() - new Date(a.data.date || 0).getTime());
+const fmtTalkDate = (d?: string) =>
+    d ? new Date(d).toLocaleDateString("en-US", { month: "short", year: "numeric" }) : "";
 ---
 
 <BaseLayout title={PAGES.cv.title}>
@@ -39,6 +46,27 @@ const { experience = [] } = cvEntry.data;
                         description: exp.description,
                         logo: exp.logo
                     }))} />
+                </section>
+            )
+        }
+
+        {
+            talks.length > 0 && (
+                <section class="section">
+                    <h2 class="section-title border-b border-border pb-2">
+                        Talks &amp; Presentations
+                    </h2>
+                    <ul class="cv-talks">
+                        {talks.map((t: any) => (
+                            <li class="cv-talk">
+                                <div class="cv-talk-main">
+                                    <span class="cv-talk-title">{t.data.title}</span>
+                                    {t.data.event && <span class="cv-talk-event">{t.data.event}</span>}
+                                </div>
+                                <span class="cv-talk-date mono body-sm">{fmtTalkDate(t.data.date)}</span>
+                            </li>
+                        ))}
+                    </ul>
                 </section>
             )
         }

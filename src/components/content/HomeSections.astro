@@ -56,19 +56,28 @@ const selected = wanted
     <h2 class="section-heading title-lg"><span class="section-emoji">🚀</span>{t("home.platforms")}</h2>
     <p class="section-caption body-sm body-muted">{platformsCaption}</p>
     <div class="platform-grid">
-        {profile.platforms.map((p) => (
-            <a
-                class="platform-card"
-                href={p.url || p.image}
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <img src={p.image} alt={p.name} class="platform-logo" loading="lazy" />
-                <div>
-                    <div class="card-title-text title-md">{p.name}</div>
-                    <p class="body-sm body-muted">{p.description}</p>
-                </div>
-            </a>
-        ))}
+        {profile.platforms.map((p) => {
+            const Tag = p.url ? "a" : "div";
+            return (
+                <Tag
+                    class:list={["platform-card", { "platform-card-static": !p.url, "platform-has-qr": !!p.qr }]}
+                    href={p.url || undefined}
+                    target={p.url ? "_blank" : undefined}
+                    rel={p.url ? "noopener noreferrer" : undefined}
+                >
+                    <img src={p.image} alt={p.name} class="platform-logo" loading="lazy" />
+                    <div>
+                        <div class="card-title-text title-md">{p.name}</div>
+                        <p class="body-sm body-muted">{p.description}</p>
+                    </div>
+                    {p.qr && (
+                        <span class="platform-qr-popover">
+                            <img src={p.qr} alt={`${p.name} WeChat QR code`} width="160" height="160" loading="lazy" />
+                            <span class="platform-qr-cap">Scan to follow on WeChat</span>
+                        </span>
+                    )}
+                </Tag>
+            );
+        })}
     </div>
 </section>

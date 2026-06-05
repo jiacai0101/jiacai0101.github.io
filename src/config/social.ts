@@ -43,12 +43,6 @@ export const SOCIALS: SocialLink[] = [
         linkTitle: `Jiacai Yi on Bilibili`,
         isActive: true,
     },
-    {
-        name: "WeChat",
-        href: "/images/MindDance.jpg",
-        linkTitle: `MindDance WeChat Official Account`,
-        isActive: true,
-    },
 ];
 
 export const SOCIAL_ICONS: Record<string, string> = {

@@ -1213,6 +1213,40 @@ a.sidebar-contact-item:hover {
     white-space: nowrap;
 }
 
+/* ---------- CV talks list ---------- */
+.cv-talks {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+}
+
+.cv-talk {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.cv-talk:last-child {
+    border-bottom: none;
+}
+
+.cv-talk-title {
+    font-weight: 600;
+}
+
+.cv-talk-event {
+    opacity: 0.75;
+    margin-left: 0.4rem;
+}
+
+.cv-talk-date {
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
 /* ---------- CV body headings: match the bordered "Experience" heading ---------- */
 .cv-body h2 {
     padding-bottom: 0.5rem;
@@ -1387,6 +1421,61 @@ a.sidebar-contact-item:hover {
 
 .platform-card:hover {
     border-color: var(--accent);
+}
+
+.platform-card-static {
+    cursor: default;
+}
+
+.platform-card-static:hover {
+    border-color: var(--border);
+}
+
+/* Platform card QR popover (e.g. MindDance WeChat) */
+.platform-has-qr {
+    position: relative;
+    cursor: help;
+}
+
+.platform-qr-popover {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 28px rgb(0 0 0 / 20%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 60;
+    pointer-events: none;
+}
+
+.platform-has-qr:hover .platform-qr-popover,
+.platform-has-qr:focus-visible .platform-qr-popover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.platform-qr-popover img {
+    width: 160px;
+    height: 160px;
+    display: block;
+    border-radius: 0.25rem;
+}
+
+.platform-qr-cap {
+    font-size: 0.72rem;
+    opacity: 0.8;
+    white-space: nowrap;
 }
 
 .platform-logo {
