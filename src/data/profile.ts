@@ -40,13 +40,6 @@ interface ProfileData {
     skillGroups: SkillGroup[];
 }
 
-// IDs from the publications collection to feature on the home page.
-export const SELECTED_PUB_IDS = [
-    "nar2024-admetlab3",
-    "natprotoc2024-optadmet",
-    "chemsci2025-docking-limits",
-];
-
 const PROFILE: Record<Lang, ProfileData> = {
     en: {
         research: [

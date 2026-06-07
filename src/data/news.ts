@@ -10,9 +10,19 @@ export interface NewsItem {
 // Migrated from TermHub content/news.json. Sorted newest-first at render time.
 export const NEWS: NewsItem[] = [
     {
+        date: "Jun 2026",
+        sortDate: "2026-06-01",
+        badge: "Paper",
+        title:
+            "DeepCYP: an integrated deep learning web server for the holistic “pathway–site–product” prediction of CYP450 metabolism",
+        description:
+            "New paper published in Nucleic Acids Research presenting DeepCYP, a deep learning web server that jointly predicts the metabolic pathway, site of metabolism, and resulting product for CYP450-mediated drug metabolism.",
+        link: { text: "Paper", url: "/publications/nar2026-deepcyp" },
+    },
+    {
         date: "Apr 2026",
         sortDate: "2026-04-07",
-        badge: "Launch",
+        badge: "Release",
         title: "Launched MindDance AIDD Brief — a bilingual daily research briefing site",
         description:
             "Released AIDD Brief (brief.minddanceai.com), a bilingual (EN/ZH) daily briefing site covering AI-driven drug discovery, with automated paper fetching, LLM-powered scoring, and curated digests.",
@@ -21,7 +31,7 @@ export const NEWS: NewsItem[] = [
     {
         date: "Mar 2026",
         sortDate: "2026-03-01",
-        badge: "HKBU",
+        badge: "Career",
         title: "Started postdoctoral research at Hong Kong Baptist University",
         description:
             "Joined the School of Chinese Medicine, Hong Kong Baptist University, as a postdoctoral researcher.",
@@ -29,7 +39,7 @@ export const NEWS: NewsItem[] = [
     {
         date: "Dec 2025",
         sortDate: "2025-12-08",
-        badge: "Ph.D.",
+        badge: "Milestone",
         title: "Successfully defended Ph.D. dissertation",
         description:
             "Defended the dissertation \"Research on Key Technologies for Deep Learning-based Small Molecule Drug Design\" at the National University of Defense Technology.",
@@ -37,7 +47,7 @@ export const NEWS: NewsItem[] = [
     {
         date: "Aug 2025",
         sortDate: "2025-08-19",
-        badge: "Chem. Sci.",
+        badge: "Paper",
         title: "Decoding the limits of deep learning in molecular docking for drug discovery",
         description:
             "Co-first authored paper published in Chemical Science (RSC), systematically decoding the boundaries and failure modes of deep learning-based molecular docking.",
@@ -46,7 +56,7 @@ export const NEWS: NewsItem[] = [
     {
         date: "Sep 2025",
         sortDate: "2025-09-01",
-        badge: "Report",
+        badge: "Talk",
         title: "Delivered a report at the CAST Young Scientific Talent Pilot Program",
         description:
             "Presented at the CAST Young Scientific Talent Pilot Program in Hunan and exchanged ideas with fellow early-career researchers.",
@@ -55,7 +65,7 @@ export const NEWS: NewsItem[] = [
     {
         date: "Jan 2025",
         sortDate: "2025-01-01",
-        badge: "Honor",
+        badge: "Award",
         title: "Selected for the inaugural CAST Youth Talent Support Program for doctoral students",
         description:
             "Selected for the inaugural doctoral-student track of the CAST Youth Talent Support Program.",

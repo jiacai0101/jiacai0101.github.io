@@ -1,9 +1,6 @@
 ---
-import { getCollection } from "astro:content";
-import BaseItemCard from "../ui/BaseItemCard.astro";
-import { getListingItem } from "../../utils/adapters";
-import { getProfile, SELECTED_PUB_IDS } from "../../data/profile";
-import { useTranslations, localizePath, stripLocaleId, type Lang } from "../../i18n/ui";
+import { getProfile } from "../../data/profile";
+import { useTranslations, type Lang } from "../../i18n/ui";
 
 interface Props {
     locale: Lang;
@@ -15,30 +12,7 @@ const platformsCaption =
     locale === "zh"
         ? "10+ 开源平台 · 5.5M+ 访问 · 覆盖 100+ 国家 · 5 项软件著作权"
         : "10+ open-source platforms · 5.5M+ visits from 100+ countries · 5 software copyrights";
-
-// Selected publications, resolved from the collection for the current locale.
-const pubs = await getCollection("publications");
-const wanted = SELECTED_PUB_IDS.map((id) => (locale === "zh" ? `zh/${id}` : id));
-const selected = wanted
-    .map((w) => pubs.find((p: any) => p.id === w))
-    .filter(Boolean) as any[];
 ---
-
-{
-    selected.length > 0 && (
-        <section class="news-section">
-            <h2 class="section-heading title-lg"><span class="section-emoji">⭐</span>{t("home.selected")}</h2>
-            <section class="item-list">
-                {selected.map((entry) => (
-                    <BaseItemCard
-                        {...getListingItem(entry)}
-                        href={localizePath(`/publications/${stripLocaleId(entry.id)}`, locale)}
-                    />
-                ))}
-            </section>
-        </section>
-    )
-}
 
 <section class="news-section">
     <h2 class="section-heading title-lg"><span class="section-emoji">🧬</span>{t("home.research")}</h2>

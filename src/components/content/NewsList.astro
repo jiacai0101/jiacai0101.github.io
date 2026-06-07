@@ -11,21 +11,33 @@ const items = [...NEWS]
     .slice(0, limit ?? NEWS.length);
 ---
 
-<ul class="news-list">
+<ul class="news-feed">
     {
         items.map((item) => (
-            <li class="card">
-                <div class="card-meta flex items-center gap-2">
-                    <span class="tag">{item.badge}</span>
-                    <span class="mono body-xs">{item.date}</span>
+            <li class="news-feed-item">
+                <span class="news-feed-marker">
+                    <span class="news-feed-dot" />
+                </span>
+                <div class="news-feed-body">
+                    <span class="news-feed-badge">{item.badge}</span>
+                    {item.link ? (
+                        <a
+                            class="news-feed-title"
+                            href={item.link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={item.description}
+                        >
+                            {item.title}
+                            <span class="news-feed-arrow">↗</span>
+                        </a>
+                    ) : (
+                        <span class="news-feed-title" title={item.description}>
+                            {item.title}
+                        </span>
+                    )}
                 </div>
-                <div class="card-title-text title-md">{item.title}</div>
-                <p class="card-desc body-sm">{item.description}</p>
-                {item.link && (
-                    <a class="link body-sm" href={item.link.url} target="_blank" rel="noopener noreferrer">
-                        {item.link.text} →
-                    </a>
-                )}
+                <time class="news-feed-date mono">{item.date}</time>
             </li>
         ))
     }
