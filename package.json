@@ -1,5 +1,5 @@
 {
-  "name": "academic-portfolio-astro",
+  "name": "scholar-site",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -9,7 +9,6 @@
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
-    "migrate": "node scripts/migrate.mjs",
     "astro": "astro"
   },
   "dependencies": {

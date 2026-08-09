@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**academic-home-astro** — Jiacai Yi's personal academic homepage. A content-driven, minimal, fast academic site.
+**scholar-site** — Jiacai Yi's personal academic homepage. A content-driven, minimal, fast academic site.
 
 It integrates two MIT-licensed templates:
 - **Layout / framework**: [academic-portfolio-astro](https://github.com/rubzip/academic-portfolio-astro) (two-column academic layout, content collections)
@@ -23,7 +23,6 @@ It integrates two MIT-licensed templates:
 npm run dev      # dev server (localhost:4321)
 npm run build    # astro build + pagefind index → dist/
 npm run preview  # preview production build (needed to test search locally)
-npm run migrate  # re-run content migration from ../academic-home/content
 ```
 
 ## Structure
@@ -42,7 +41,6 @@ src/
 └── styles/global.css  # ALL styles (no <style> in .astro files)
 
 content.config.ts  # collection schemas
-scripts/migrate.mjs # one-off TermHub → new schema migration
 public/images/     # migrated image assets
 ```
 
@@ -80,5 +78,4 @@ public/images/     # migrated image assets
 
 ## Notes / Follow-ups
 
-- **MCP**: the upstream `termhub` MCP server (`../academic-home/mcp-server`) targets the old `content/` schema; it needs adapting to these collections (and the en/zh split) before reuse.
-- Migration is reproducible via `npm run migrate` (deterministic, bilingual, field mapping in `scripts/migrate.mjs`).
+- The retired TermHub/React working copy is no longer a runtime dependency. Historical source is available through the workspace repository snapshot if recovery is ever needed.
