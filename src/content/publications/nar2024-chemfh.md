@@ -14,6 +14,7 @@ tags:
 authorRole: Co-first author
 impactFactor: 13.1
 quartile: JCR Q1
+selected: true
 ---
 
 High-throughput screening rapidly tests extensive arrays of chemical compounds to identify hit compounds for specific biological targets in drug discovery. However, false-positive results disrupt hit-to-lead progression and waste resources. ChemFH is an integrated online tool that systematically screens for frequent false positives by incorporating large-scale structural alerts, aggregation predictors, and interference filters covering pan-assay interference compounds (PAINS), reactive metabolites, and colloidal aggregators, enabling researchers to flag problematic compounds early in the discovery pipeline.

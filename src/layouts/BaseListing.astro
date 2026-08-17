@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BaseItemCard from "../components/ui/BaseItemCard.astro";
+import BibliographyList from "../components/content/BibliographyList.astro";
 import { getListingItem } from "../utils/adapters";
 import { localizePath, stripLocaleId, useTranslations, type Lang } from "../i18n/ui";
 
@@ -20,10 +21,9 @@ const t = useTranslations(locale);
 const isZhId = (id: string) => id.startsWith("zh/");
 let entries = manualEntries || (collection !== "all" ? await getCollection(collection as any) : []);
 if (page) entries = page.data;
-// Keep only entries matching the current locale.
 entries = entries.filter((e: any) => (locale === "zh" ? isZhId(e.id) : !isZhId(e.id)));
 
-const sortedEntries = entries.sort((a: any, b: any) => {
+const sortedEntries = [...entries].sort((a: any, b: any) => {
     const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
     const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
     return dateB - dateA;
@@ -38,13 +38,17 @@ const sortedEntries = entries.sort((a: any, b: any) => {
         </header>
     )}
 
-    <section class="item-list">
-        {sortedEntries.map((entry: any) => {
-            const item = getListingItem(entry);
-            const slug = stripLocaleId(entry.id);
-            return <BaseItemCard {...item} href={localizePath(`/${collection}/${slug}`, locale)} />;
-        })}
-    </section>
+    {collection === "publications" ? (
+        <BibliographyList entries={sortedEntries} locale={locale} groupByYear />
+    ) : (
+        <section class="item-list">
+            {sortedEntries.map((entry: any) => {
+                const item = getListingItem(entry);
+                const slug = stripLocaleId(entry.id);
+                return <BaseItemCard {...item} href={localizePath(`/${collection}/${slug}`, locale)} />;
+            })}
+        </section>
+    )}
 
     {page && page.lastPage > 1 && (
         <nav class="pagination" aria-label="Pagination">
@@ -57,7 +61,7 @@ const sortedEntries = entries.sort((a: any, b: any) => {
             {page.url.next ? (
                 <a href={page.url.next} class="pagination-link">{t("list.next")} &rarr;</a>
             ) : (
-                <span class="pagination-inactive">{t("list.next")} &rarr;</span>
+                <span class="pagination-inactive">{t("list.next")}</span>
             )}
         </nav>
     )}

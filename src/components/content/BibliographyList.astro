@@ -1,0 +1,88 @@
+---
+import { SITE } from "../../config";
+import { shortVenue, yearFromDate } from "../../utils/venues";
+import { localizePath, stripLocaleId, type Lang } from "../../i18n/ui";
+
+interface Props {
+    entries: any[];
+    locale?: Lang;
+    groupByYear?: boolean;
+}
+
+const { entries, locale = "en", groupByYear = false } = Astro.props;
+
+const sorted = [...entries].sort((a, b) => {
+    const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+    const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+    return dateB - dateA;
+});
+
+function authorNodes(authors?: string) {
+    if (!authors) return [];
+    return authors.split(new RegExp(`(${SITE.author})`, "g"));
+}
+
+const groups: { year: string; items: any[] }[] = [];
+if (groupByYear) {
+    for (const entry of sorted) {
+        const year = yearFromDate(entry.data.date) || "—";
+        const last = groups[groups.length - 1];
+        if (last && last.year === year) last.items.push(entry);
+        else groups.push({ year, items: [entry] });
+    }
+} else {
+    groups.push({ year: "", items: sorted });
+}
+---
+
+{groups.map((group) => (
+    <section class:list={["bib-group", { "bib-group-year": groupByYear }]}>
+        {groupByYear && group.year && (
+            <h2 class="bib-year-heading">{group.year}</h2>
+        )}
+        <ol class="bib-list">
+            {group.items.map((entry) => {
+                const slug = stripLocaleId(entry.id);
+                const href = localizePath(`/publications/${slug}`, locale);
+                const year = yearFromDate(entry.data.date);
+                const venue = shortVenue(entry.data.journal);
+                const parts = authorNodes(entry.data.author);
+                return (
+                    <li class="bib-item">
+                        {!groupByYear && (
+                            <span class="bib-year">{year}</span>
+                        )}
+                        <div class="bib-body">
+                            <a class="bib-title" href={href}>{entry.data.title}</a>
+                            {entry.data.author && (
+                                <p class="bib-authors">
+                                    {parts.map((part) =>
+                                        part === SITE.author ? <strong>{part}</strong> : part,
+                                    )}
+                                    {entry.data.authorRole && (
+                                        <span class="bib-role"> · {entry.data.authorRole}</span>
+                                    )}
+                                </p>
+                            )}
+                        </div>
+                        <div class="bib-aside">
+                            {venue && (
+                                <span class="bib-venue">{venue}</span>
+                            )}
+                            {entry.data.external_url && (
+                                <a
+                                    class="bib-link"
+                                    href={entry.data.external_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    PDF
+                                </a>
+                            )}
+                        </div>
+                    </li>
+                );
+            })}
+        </ol>
+    </section>
+))}

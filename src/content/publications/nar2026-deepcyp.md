@@ -11,6 +11,7 @@ tags:
   - Web Server
 impactFactor: 16.6
 quartile: JCR Q1
+selected: true
 ---
 
 DeepCYP is an integrated deep learning web server for the holistic prediction of CYP450-mediated drug metabolism. Rather than treating metabolism as a single isolated task, DeepCYP jointly addresses the “pathway–site–product” chain: inferring the metabolic pathway, localizing the site of metabolism, and generating the resulting metabolite within one unified online platform, supporting early-stage assessment of metabolic liabilities in drug discovery.

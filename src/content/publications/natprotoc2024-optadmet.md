@@ -14,6 +14,7 @@ tags:
 authorRole: First author
 impactFactor: 16
 quartile: JCR Q1
+selected: true
 ---
 
 Lead optimization is a crucial step in drug discovery, aiming to design potential drug candidates from biologically active hits. During lead optimization, active hits undergo modifications to achieve a balance between potency and drug-likeness (ADMET properties). OptADMET provides a web-based platform that integrates chemical transformation rules for 32 ADMET properties, enabling researchers to identify desirable substructure modifications, predict ADMET improvements, and systematically optimize lead compounds through a practical, protocol-driven workflow.

@@ -1,6 +1,6 @@
 ---
 name: "Jiacai Yi"
-avatar: "avatar.png"
+avatar: "avatar.jpg"
 shortBio: "Postdoctoral researcher working on AI-enabled drug design and biomedical AI platforms."
 institution: "School of Chinese Medicine, Hong Kong Baptist University"
 ---

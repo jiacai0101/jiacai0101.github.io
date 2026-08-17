@@ -13,7 +13,7 @@ export default defineConfig({
     rehypePlugins: [rehypeKatex],
   },
   build: {
-    inlineStylesheets: 'always'
+    inlineStylesheets: 'auto'
   },
   vite: {
     plugins: [tailwindcss()],

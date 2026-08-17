@@ -14,6 +14,7 @@ tags:
 authorRole: Co-first author
 impactFactor: 13.1
 quartile: JCR Q1
+selected: true
 ---
 
 Drug interactions pose significant challenges in clinical practice, potentially leading to adverse drug reactions, reduced efficacy, and even life-threatening consequences. DDInter 2.0 substantially expands data coverage with over 0.36M interaction associations among 3,130 entities, introduces new interaction types including drug-food and drug-disease interactions, and features a redesigned user interface with enhanced visualization and retrieval capabilities. The platform integrates severity classification, mechanistic annotations, and clinical management strategies to support safer polypharmacy decision-making.

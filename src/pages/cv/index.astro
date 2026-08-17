@@ -36,15 +36,12 @@ const fmtTalkDate = (d?: string) =>
         {
             experience.length > 0 && (
                 <section class="section">
-                    <h2 class="section-title border-b border-border pb-2">
-                        Experience
-                    </h2>
+                    <h2 class="section-heading">Experience</h2>
                     <Timeline items={experience.map(exp => ({
                         title: exp.role,
                         subtitle: exp.institution,
                         period: exp.period,
                         description: exp.description,
-                        logo: exp.logo
                     }))} />
                 </section>
             )
@@ -53,9 +50,7 @@ const fmtTalkDate = (d?: string) =>
         {
             talks.length > 0 && (
                 <section class="section">
-                    <h2 class="section-title border-b border-border pb-2">
-                        Talks &amp; Presentations
-                    </h2>
+                    <h2 class="section-heading">Talks &amp; Presentations</h2>
                     <ul class="cv-talks">
                         {talks.map((t: any) => (
                             <li class="cv-talk">
@@ -63,7 +58,7 @@ const fmtTalkDate = (d?: string) =>
                                     <span class="cv-talk-title">{t.data.title}</span>
                                     {t.data.event && <span class="cv-talk-event">{t.data.event}</span>}
                                 </div>
-                                <span class="cv-talk-date mono body-sm">{fmtTalkDate(t.data.date)}</span>
+                                <span class="cv-talk-date">{fmtTalkDate(t.data.date)}</span>
                             </li>
                         ))}
                     </ul>

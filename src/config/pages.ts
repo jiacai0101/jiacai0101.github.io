@@ -2,7 +2,7 @@ import type { PagesConfig } from "../types";
 
 export const PAGES: PagesConfig = {
     home: {
-        title: "About Me",
+        title: "Jiacai Yi",
         subtitle: "",
         isActive: true,
     },

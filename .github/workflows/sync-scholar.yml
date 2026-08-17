@@ -1,0 +1,40 @@
+name: Sync Google Scholar
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-scholar
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Fetch Scholar metrics and photo
+        run: node scripts/sync-scholar.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/scholar.json public/avatar.jpg
+          if git diff --cached --quiet; then
+            echo "No Scholar updates."
+            exit 0
+          fi
+          git commit -m "chore: sync Google Scholar metrics"
+          git push

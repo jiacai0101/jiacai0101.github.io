@@ -2,51 +2,73 @@
 import { SOCIALS, SOCIAL_ICONS } from "../../config";
 import { getEntry } from "astro:content";
 import Icon from "../ui/Icon.astro";
-import { Image } from 'astro:assets';
-import { getLangFromUrl } from "../../i18n/ui";
+import { Image } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "../../i18n/ui";
+import { getProfile } from "../../data/profile";
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const profile = getProfile(lang);
+const appointment = profile.role.split(" · ")[0];
 const activeSocials = SOCIALS.filter((s) => s.isActive);
 const bioEntry = await getEntry("bio", lang === "zh" ? "bio-zh" : "bio");
 const bio = bioEntry?.data;
+const citations = profile.citations.toLocaleString("en-US");
 ---
 
-<aside class="sidebar max-lg:flex-row max-lg:flex-wrap max-lg:gap-3 max-md:gap-2">
-    <div class="flex flex-col items-center text-center max-lg:flex-row max-lg:text-left max-lg:gap-3 max-lg:items-center max-md:gap-2">
-        {bio?.avatar && (
-            <Image
-                src={`/${bio.avatar}`}
-                alt={`Avatar of ${bio.name}`}
-                width={160} /* Maximum width in global.css for sidebar-avatar class */
-                height={160}
-                densities={[1.5, 2]} 
-                format="webp"
-                class="sidebar-avatar"
-                loading="eager"
-            />
-        )}
-        <div class="flex flex-col items-center max-lg:items-start">
-            {bio?.name && <h1 class="sidebar-name">{bio.name}</h1>}
-            {bio?.institution && (
-                <p class="sidebar-info">{bio.institution}</p>
-            )}
-            {bio?.shortBio && (
-                <p class="sidebar-bio mt-2 max-md:hidden">{bio.shortBio}</p>
-            )}
-            <div class="flex gap-1 flex-wrap items-center justify-center max-lg:justify-start mt-3">
-                {activeSocials.map((social) => (
-                    <a
-                        href={social.href}
-                        aria-label={social.linkTitle}
-                        title={social.linkTitle}
-                        target="_blank"
-                        rel="noreferrer"
-                        class="social-link"
-                    >
-                        <Icon name={SOCIAL_ICONS[social.name] || social.name} size={24} />
+<header class="masthead">
+    <div class="masthead-identity">
+        {
+            bio?.avatar && (
+                <Image
+                    src={`/${bio.avatar}`}
+                    alt={`Portrait of ${bio.name}`}
+                    width={184}
+                    height={184}
+                    densities={[1.5, 2]}
+                    format="webp"
+                    class="masthead-avatar"
+                    loading="eager"
+                />
+            )
+        }
+        <div class="masthead-copy">
+            {bio?.name && <p class="masthead-name">{bio.name}</p>}
+            <p class="masthead-role">{appointment}</p>
+            {bio?.institution && <p class="masthead-info">{bio.institution}</p>}
+            <ul class="masthead-meta">
+                <li>
+                    <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                </li>
+                <li>
+                    <a href={profile.scholarUrl} target="_blank" rel="noreferrer">
+                        {t("sidebar.scholar")}
                     </a>
-                ))}
-            </div>
+                    <span class="masthead-note"> · {citations} {t("sidebar.citations")}</span>
+                </li>
+                <li>
+                    <a href={profile.cvUrl}>{t("sidebar.cv")}</a>
+                </li>
+            </ul>
         </div>
     </div>
-</aside>
+    <div class="masthead-socials">
+        {
+            activeSocials.map((social) => (
+                <a
+                    href={social.href}
+                    aria-label={social.linkTitle}
+                    title={social.linkTitle}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="social-link"
+                >
+                    <Icon
+                        name={SOCIAL_ICONS[social.name] || social.name}
+                        size={18}
+                    />
+                </a>
+            ))
+        }
+    </div>
+</header>

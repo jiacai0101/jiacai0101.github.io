@@ -24,7 +24,8 @@ export const ui: Record<Lang, Dict> = {
         "home.research": "Research",
         "home.skills": "Skills & Methods",
         "home.platforms": "Platforms",
-        "home.selected": "Selected Publications",
+        "home.selected": "Selected publications",
+        "home.all": "All",
         "detail.back": "Back to",
         "detail.external": "View external",
         "list.newer": "Newer",
@@ -46,6 +47,9 @@ export const ui: Record<Lang, Dict> = {
         "page.tags.subtitle": "Explore content by topic.",
         "page.search.title": "Search",
         "page.search.subtitle": "Search across publications, projects, and blog posts.",
+        "sidebar.scholar": "Google Scholar",
+        "sidebar.citations": "citations",
+        "sidebar.cv": "Curriculum Vitae",
     },
     zh: {
         "nav.about": "关于",
@@ -67,6 +71,7 @@ export const ui: Record<Lang, Dict> = {
         "home.skills": "技能与方法",
         "home.platforms": "平台与产品",
         "home.selected": "代表论文",
+        "home.all": "全部",
         "detail.back": "返回",
         "detail.external": "查看原文",
         "list.newer": "较新",
@@ -88,6 +93,9 @@ export const ui: Record<Lang, Dict> = {
         "page.tags.subtitle": "按主题浏览内容。",
         "page.search.title": "搜索",
         "page.search.subtitle": "在论文、项目与博客中检索。",
+        "sidebar.scholar": "Google Scholar",
+        "sidebar.citations": "次引用",
+        "sidebar.cv": "个人简历",
     },
 };
 

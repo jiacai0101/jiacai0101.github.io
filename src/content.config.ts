@@ -13,10 +13,11 @@ const publications = defineCollection({
         image: z.string().optional(),
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
-        authorRole: z.string().optional(),    // "First author" | "Co-first author"
-        impactFactor: z.number().optional(),  // journal IF
-        quartile: z.string().optional(),       // "JCR Q1"
-        highlight: z.string().optional(),      // e.g. "Cited 2,500+"
+        authorRole: z.string().optional(),
+        impactFactor: z.number().optional(),
+        quartile: z.string().optional(),
+        highlight: z.string().optional(),
+        selected: z.boolean().optional(),
     }),
 });
 

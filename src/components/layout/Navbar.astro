@@ -23,7 +23,7 @@ const links = NAV_LINKS.filter((link) => {
     const isHome = link.href === "/";
     const pageKey = isHome ? "home" : link.href.split("/").filter(Boolean)[0];
     const pageConfig = (PAGES as any)[pageKey];
-    return link.isActive !== false && pageConfig?.active !== false;
+    return link.isActive !== false && pageConfig?.isActive !== false;
 });
 ---
 
@@ -46,14 +46,8 @@ const links = NAV_LINKS.filter((link) => {
     </ul>
 
     <div class="nav-actions">
-        <a class="nav-icon" href="/tags" aria-label={t("nav.tags")} title={t("nav.tags")}>
-            <Icon name="Hash" size={20} />
-        </a>
-        <a class="nav-icon" href="/archives" aria-label={t("nav.archives")} title={t("nav.archives")}>
-            <Icon name="Archive" size={20} />
-        </a>
         <a class="nav-icon" href="/search" aria-label={t("nav.search")} title={t("nav.search")}>
-            <Icon name="Search" size={20} />
+            <Icon name="Search" size={18} />
         </a>
     </div>
 </header>

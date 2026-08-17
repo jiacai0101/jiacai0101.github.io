@@ -2,14 +2,15 @@
 import { SITE, THEME_CONFIG, ANALYTICS, THEMES } from "../config";
 import { getLangFromUrl } from "../i18n/ui";
 import BackToTop from "../components/layout/BackToTop.astro";
-import { ClientRouter } from "astro:transitions";
 import LeftSidebar from "../components/layout/LeftSidebar.astro";
 import RightMain from "../components/layout/RightMain.astro";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/400-italic.css";
+import "@fontsource/ibm-plex-sans/500.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "@fontsource/ibm-plex-sans/700.css";
 import "@fontsource/jetbrains-mono/400.css";
 import "@fontsource/jetbrains-mono/500.css";
-import "@fontsource/jetbrains-mono/600.css";
-import "@fontsource/jetbrains-mono/700.css";
-import "@fontsource/jetbrains-mono/800.css";
 import "katex/dist/katex.min.css";
 import "../styles/global.css";
 
@@ -35,6 +36,7 @@ const {
     robots = "index, follow"
 } = Astro.props;
 
+const pageTitle = title === SITE.title ? SITE.title : `${title} | ${SITE.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
 const htmlLang = getLangFromUrl(Astro.url);
 
@@ -43,7 +45,7 @@ const jsonLd = {
     "@type": "Person",
     name: SITE.author,
     url: SITE.website,
-    jobTitle: "Professor",
+    jobTitle: "Postdoctoral Researcher",
     description: SITE.desc,
 };
 ---
@@ -82,7 +84,7 @@ const jsonLd = {
                 --background: var(--lightBg);
                 --foreground: var(--lightFg);
                 --accent: var(--lightAccent);
-                --accent-2: #8b2635;
+                --accent-2: #1d4e89;
                 --text-muted: var(--lightMuted);
                 --border: var(--lightBorder);
                 --surface: var(--lightSurface);
@@ -93,7 +95,7 @@ const jsonLd = {
                 --background: var(--darkBg);
                 --foreground: var(--darkFg);
                 --accent: var(--darkAccent);
-                --accent-2: #e0707c;
+                --accent-2: #8cb4e0;
                 --text-muted: var(--darkMuted);
                 --border: var(--darkBorder);
                 --surface: var(--darkSurface);
@@ -104,8 +106,8 @@ const jsonLd = {
         <link rel="canonical" href={canonicalURL} />
 
         <!-- General Meta Tags -->
-        <title>{title} | {SITE.title}</title>
-        <meta name="title" content={`${title} | ${SITE.title}`} />
+        <title>{pageTitle}</title>
+        <meta name="title" content={pageTitle} />
         <meta name="description" content={description} />
         <meta name="author" content={SITE.author} />
 
@@ -125,8 +127,6 @@ const jsonLd = {
 
         <!-- Structured Data (JSON-LD) -->
         <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
-        <ClientRouter />
 
         {
             (ANALYTICS.umami.websiteId || ANALYTICS.ga4Id) && (
@@ -228,7 +228,7 @@ const jsonLd = {
                 </div>
             )
         }
-        <div class="flex max-lg:flex-col mx-auto max-w-6xl w-full min-h-screen">
+        <div class="page-shell mx-auto w-full max-w-6xl min-h-screen">
             <LeftSidebar />
             <RightMain>
                 <slot />

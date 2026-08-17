@@ -3,7 +3,6 @@ import { getEntry, render } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
 import BackLink from "../components/ui/BackLink.astro";
 import Tag from "../components/ui/Tag.astro";
-import Icon from "../components/ui/Icon.astro";
 import { getDetailItem } from "../utils/adapters";
 import { SITE } from "../config";
 import { localizePath, useTranslations, type Lang } from "../i18n/ui";
@@ -23,14 +22,10 @@ if (!entry) return Astro.redirect("/404");
 const { Content } = await render(entry);
 const detail = getDetailItem(entry, collection);
 
-const meta = [];
-if (detail.date) meta.push({ label: "Date", value: detail.date, icon: "Calendar" });
-if (detail.authors) meta.push({ label: "Author", value: detail.authors, icon: "User" });
-if (detail.extraInput) {
-    const icon = "Institution";
-    const label = collection === "publications" ? "Journal" : collection === "talks" ? "Event" : collection === "teaching" ? "Institution" : "Info";
-    meta.push({ label, value: detail.extraInput, icon });
-}
+const meta: string[] = [];
+if (detail.authors) meta.push(detail.authors);
+if (detail.extraInput) meta.push(detail.extraInput);
+if (detail.date) meta.push(detail.date);
 
 const description = entry.data.description || detail.description || SITE.desc;
 const ogImage = entry.data.image || SITE.ogImage;
@@ -50,14 +45,9 @@ const ogImage = entry.data.image || SITE.ogImage;
         <h1 class="page-title mb-4">{detail.title}</h1>
 
         {meta.length > 0 && (
-            <div class="card-meta mb-4">
-                {meta.map((m: any) => (
-                    <span class="flex items-center gap-1">
-                        <Icon name={m.icon} size={14} />
-                        <span>{m.value}</span>
-                    </span>
-                ))}
-            </div>
+            <p class="detail-meta">
+                {meta.join(" · ")}
+            </p>
         )}
 
         {detail.tags && detail.tags.length > 0 && (

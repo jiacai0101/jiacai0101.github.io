@@ -1,4 +1,14 @@
 import type { Lang } from "../i18n/ui";
+import scholar from "./scholar.json" with { type: "json" };
+
+const citationLabel = scholar.citations.toLocaleString("en-US");
+
+function proofLine(lang: Lang): string {
+    if (lang === "zh") {
+        return `${citationLabel} 次引用 · h-index ${scholar.hIndex} · ${scholar.articles} 篇论文 · 平台覆盖 100+ 个国家`;
+    }
+    return `${citationLabel} citations · h-index ${scholar.hIndex} · ${scholar.articles} papers · platforms used in 100+ countries`;
+}
 
 export interface ResearchArea {
     title: string;
@@ -7,26 +17,17 @@ export interface ResearchArea {
 export interface Platform {
     name: string;
     description: string;
-    image: string;
     url?: string;
-    qr?: string; // hover QR popover (e.g. WeChat official account)
-}
-
-export interface Stat {
-    value: string;
-    label: string;
-}
-
-export interface SkillGroup {
-    category: string;
-    items: string[];
 }
 
 interface ProfileData {
+    name: string;
+    role: string;
+    statement: string;
+    intro: string;
+    proof: string;
     research: ResearchArea[];
-    skills: string[];
     platforms: Platform[];
-    keywords: string[];
     email: string;
     location: string;
     cvUrl: string;
@@ -35,81 +36,65 @@ interface ProfileData {
     scholarUrl: string;
     citations: number;
     hIndex: number;
-    logo: string; // affiliation logo path; "" hides it
-    stats: Stat[];
-    skillGroups: SkillGroup[];
 }
 
 const PROFILE: Record<Lang, ProfileData> = {
     en: {
+        name: "Jiacai Yi",
+        role: "Postdoctoral researcher · Hong Kong Baptist University",
+        statement:
+            "I work on AI-enabled drug design, and on the scientific platforms that make those methods usable.",
+        intro:
+            "I am a postdoctoral researcher at the School of Chinese Medicine, Hong Kong Baptist University. My research covers molecular property prediction, generative optimization, molecular docking, and large-scale virtual screening, with an emphasis on turning models into open tools for medicinal chemistry.",
+        proof: proofLine("en"),
         research: [
-            { title: "AI-Enabled Drug Design", focus: "Molecular property prediction, generative optimization, molecular docking, and large-scale virtual screening." },
-            { title: "Biomedical AI Platforms", focus: "Deployable, one-stop scientific platforms for biomedicine and decision support." },
-            { title: "LLM-Augmented Scientific Workflows", focus: "Large language model agents for drug-discovery workflows." },
+            { title: "AI-enabled drug design", focus: "Molecular property prediction, generative optimization, molecular docking, and large-scale virtual screening." },
+            { title: "Biomedical AI platforms", focus: "Deployable scientific software and databases for ADMET, drug–drug interaction, and decision support." },
+            { title: "LLM-augmented scientific workflows", focus: "Language-model agents for drug-discovery pipelines." },
         ],
-        skills: ["AI + Science", "Diffusion Models", "Graph Neural Networks", "Large Language Models", "High-Performance Computing", "Scientific Platform Engineering"],
         platforms: [
-            { name: "DrugStudio", description: "A one-stop intelligent drug design platform for molecular modeling and scientific workflows.", image: "/images/DrugStudio.svg" },
-            { name: "MindDance", description: "WeChat official account sharing research notes, ideas, and updates on AI for drug discovery.", image: "/images/MindDance.jpg", qr: "/images/minddance-qr.jpg" },
+            { name: "ADMETlab 3.0", description: "ADMET prediction platform with API access and decision support.", url: "https://admetlab3.scbdd.com/" },
+            { name: "DDInter 2.0", description: "Drug–drug, drug–food, and drug–disease interaction resource.", url: "https://ddinter2.scbdd.com/" },
+            { name: "ChemFH", description: "Screening for frequent false positives in chemical biology.", url: "https://chemfh.scbdd.com/" },
+            { name: "OptADMET", description: "Substructure modification to improve ADMET properties of leads.", url: "https://cadd.nscc-tj.cn/deploy/optadmet/" },
+            { name: "DrugStudio", description: "One-stop platform for molecular modeling and scientific workflows." },
         ],
-        keywords: ["AI Drug Design", "Diffusion Models", "Graph Neural Networks", "LLMs for Science"],
         email: "yjc0101@hkbu.edu.hk",
         location: "Hong Kong",
         cvUrl: "/cv",
         office: "School of Chinese Medicine, HKBU · Kowloon Tong, Hong Kong",
         status: "Open to research collaborations",
-        scholarUrl: "https://scholar.google.com.hk/citations?user=jkrVys8AAAAJ",
-        citations: 4693,
-        hIndex: 12,
-        logo: "", // set to e.g. "/images/hkbu-logo.png" once the logo file is added
-        stats: [
-            { value: "10", label: "First / co-first SCI papers" },
-            { value: "4,600+", label: "Google Scholar citations" },
-            { value: "10+", label: "Open-source platforms" },
-            { value: "5.5M+", label: "Platform visits" },
-            { value: "100+", label: "Countries reached" },
-            { value: "5", label: "Software copyrights" },
-        ],
-        skillGroups: [
-            { category: "AI & ML", items: ["PyTorch", "Diffusion Models", "Graph Neural Networks", "Large Language Models"] },
-            { category: "Drug Discovery", items: ["ADMET Prediction", "Molecular Generation", "Structure-based Drug Design", "Molecular Docking"] },
-            { category: "Development", items: ["Python", "Full-stack Web", "Low-code Architecture", "Microservices", "API Design"] },
-        ],
+        scholarUrl: scholar.url,
+        citations: scholar.citations,
+        hIndex: scholar.hIndex,
     },
     zh: {
+        name: "蚁佳才",
+        role: "博士后 · 香港浸会大学",
+        statement: "我研究 AI 药物设计，并把它做成可以实际使用的科学平台。",
+        intro:
+            "我是香港浸会大学中医药学院博士后。研究方向包括分子性质预测、生成式优化、分子对接与大规模虚拟筛选，重点是把模型做成可供药物化学使用的开放工具。",
+        proof: proofLine("zh"),
         research: [
             { title: "AI 药物设计", focus: "分子性质预测、生成式优化、分子对接与大规模虚拟筛选。" },
-            { title: "生物医学 AI 平台", focus: "面向生物医学与决策支持的一站式、可部署科学平台。" },
-            { title: "LLM 增强的科研工作流", focus: "面向药物发现工作流的大语言模型智能体。" },
+            { title: "生物医学 AI 平台", focus: "面向 ADMET、药物相互作用与决策支持的可部署科学软件与数据库。" },
+            { title: "LLM 增强的科研工作流", focus: "面向药物发现流程的大语言模型智能体。" },
         ],
-        skills: ["AI + 科学", "扩散模型", "图神经网络", "大语言模型", "高性能计算", "科学平台工程"],
         platforms: [
-            { name: "DrugStudio", description: "面向分子建模与科研工作流的一站式智能药物设计平台。", image: "/images/DrugStudio.svg" },
-            { name: "MindDance", description: "微信公众号，分享 AI 药物发现的研究笔记、思考与动态。", image: "/images/MindDance.jpg" },
+            { name: "ADMETlab 3.0", description: "带 API 与决策支持的 ADMET 预测平台。", url: "https://admetlab3.scbdd.com/" },
+            { name: "DDInter 2.0", description: "药物–药物、药物–食物与药物–疾病相互作用资源。", url: "https://ddinter2.scbdd.com/" },
+            { name: "ChemFH", description: "化学生物学中的高频假阳性筛查。", url: "https://chemfh.scbdd.com/" },
+            { name: "OptADMET", description: "通过子结构改造改善先导化合物 ADMET 性质。", url: "https://cadd.nscc-tj.cn/deploy/optadmet/" },
+            { name: "DrugStudio", description: "面向分子建模与科研工作流的一站式平台。" },
         ],
-        keywords: ["AI 药物设计", "扩散模型", "图神经网络", "科学大语言模型"],
         email: "yjc0101@hkbu.edu.hk",
         location: "香港",
         cvUrl: "/cv",
         office: "香港浸会大学中医药学院 · 香港九龙塘",
         status: "开放科研合作",
-        scholarUrl: "https://scholar.google.com.hk/citations?user=jkrVys8AAAAJ",
-        citations: 4693,
-        hIndex: 12,
-        logo: "",
-        stats: [
-            { value: "10", label: "一作/共一 SCI 论文" },
-            { value: "4,600+", label: "Google Scholar 引用" },
-            { value: "10+", label: "开源平台" },
-            { value: "5.5M+", label: "平台访问量" },
-            { value: "100+", label: "覆盖国家" },
-            { value: "5", label: "软件著作权" },
-        ],
-        skillGroups: [
-            { category: "AI 与机器学习", items: ["PyTorch", "扩散模型", "图神经网络", "大语言模型"] },
-            { category: "药物发现", items: ["ADMET 预测", "分子生成", "基于结构的药物设计", "分子对接"] },
-            { category: "工程开发", items: ["Python", "全栈 Web", "低代码架构", "微服务", "API 设计"] },
-        ],
+        scholarUrl: scholar.url,
+        citations: scholar.citations,
+        hIndex: scholar.hIndex,
     },
 };
 
