@@ -10,13 +10,13 @@ export interface NewsItem {
 // Migrated from TermHub content/news.json. Sorted newest-first at render time.
 export const NEWS: NewsItem[] = [
     {
-        date: "Jun 2026",
-        sortDate: "2026-06-01",
+        date: "May 2026",
+        sortDate: "2026-05-19",
         badge: "Paper",
         title:
             "DeepCYP: an integrated deep learning web server for the holistic “pathway–site–product” prediction of CYP450 metabolism",
         description:
-            "New paper published in Nucleic Acids Research presenting DeepCYP, a deep learning web server that jointly predicts the metabolic pathway, site of metabolism, and resulting product for CYP450-mediated drug metabolism.",
+            "Paper published in Nucleic Acids Research presenting DeepCYP, a deep learning web server that jointly predicts the metabolic pathway, site of metabolism, and resulting product for CYP450-mediated drug metabolism.",
         link: { text: "Paper", url: "/publications/nar2026-deepcyp" },
     },
     {
@@ -27,6 +27,15 @@ export const NEWS: NewsItem[] = [
         description:
             "Released AIDD Brief (brief.minddanceai.com), a bilingual (EN/ZH) daily briefing site covering AI-driven drug discovery, with automated paper fetching, LLM-powered scoring, and curated digests.",
         link: { text: "Visit", url: "https://brief.minddanceai.com" },
+    },
+    {
+        date: "Mar 2026",
+        sortDate: "2026-03-14",
+        badge: "Paper",
+        title: "Expert-Inspired Multi-Agent Coordination for Multi-Objective Molecular Optimization",
+        description:
+            "AAAI-26 paper introducing MAMO, a multi-agent molecular design framework in which specialized agents and a central scheduler balance conflicting optimization objectives.",
+        link: { text: "Paper", url: "/publications/aaai2026-multiagent-molopt" },
     },
     {
         date: "Mar 2026",

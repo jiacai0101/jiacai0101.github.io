@@ -14,6 +14,7 @@ tags:
 authorRole: Co-first author
 impactFactor: 13.1
 quartile: JCR Q1
+highlight: Cited 1,300+
 selected: true
 ---
 

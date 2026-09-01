@@ -1,7 +1,7 @@
 ---
 title: A fused deep learning approach to transform drug repositioning
 author: Kun Li, Jiacai Yi, Qing Ye, Xixi Yang, Long Yu, YouChao Deng, Chengkun Wu, Tingjun Hou, Dejun Jiang, Dongsheng Cao
-date: "2025-11-01"
+date: "2025-11-06"
 journal: Communications Chemistry
 external_url: https://www.nature.com/articles/s42004-025-01712-x
 image: /images/publications/commchem2025-drug-repositioning.svg

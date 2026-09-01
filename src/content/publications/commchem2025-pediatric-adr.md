@@ -1,7 +1,7 @@
 ---
 title: "Machine learning prediction of pediatric adverse drug reactions using consensus-derived scarce data"
 author: Yao Tian, Jiacai Yi, Kun Li, Jinfu Peng, Youchao Deng, Dejun Jiang, Dongsheng Cao
-date: "2025-11-01"
+date: "2025-12-26"
 journal: Communications Chemistry
 external_url: https://www.nature.com/articles/s42004-025-01865-9
 description: A computational pharmacovigilance approach for children that integrates consensus-driven signal detection, multi-level biological features, and interpretable machine learning, built on the largest curated pediatric drug–ADR dataset derived from 1.4 million FAERS reports…

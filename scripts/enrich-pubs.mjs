@@ -9,9 +9,9 @@ const DIR = path.resolve(process.cwd(), "src/content/publications");
 // id -> metadata (first/co-first author papers from the CV)
 const META = {
     "natprotoc2024-optadmet": { authorRole: "First author", impactFactor: 16, quartile: "JCR Q1" },
-    "nar2024-admetlab3": { authorRole: "Co-first author", impactFactor: 13.1, quartile: "JCR Q1" },
+    "nar2024-admetlab3": { authorRole: "Co-first author", impactFactor: 13.1, quartile: "JCR Q1", highlight: "Cited 1,300+" },
     "nar2024-ddinter2": { authorRole: "Co-first author", impactFactor: 13.1, quartile: "JCR Q1" },
-    "nar2022-admetlab2": { authorRole: "Co-first author", impactFactor: 13.1, quartile: "JCR Q1", highlight: "Cited 2,500+" },
+    "nar2022-admetlab2": { authorRole: "Co-first author", impactFactor: 13.1, quartile: "JCR Q1", highlight: "Cited 3,100+" },
     "nar2024-chemfh": { authorRole: "Co-first author", impactFactor: 13.1, quartile: "JCR Q1" },
     "nar2022-ddinter": { authorRole: "Co-first author", impactFactor: 13.1, quartile: "JCR Q1" },
     "bib2024-chemmort": { authorRole: "First author", impactFactor: 7.7, quartile: "JCR Q1" },

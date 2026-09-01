@@ -53,6 +53,7 @@ const PROFILE: Record<Lang, ProfileData> = {
             { title: "LLM-augmented scientific workflows", focus: "Language-model agents for drug-discovery pipelines." },
         ],
         platforms: [
+            { name: "DeepCYP", description: "End-to-end CYP450 pathway–site–product metabolism prediction.", url: "https://deepcyp.scbdd.com/" },
             { name: "ADMETlab 3.0", description: "ADMET prediction platform with API access and decision support.", url: "https://admetlab3.scbdd.com/" },
             { name: "DDInter 2.0", description: "Drug–drug, drug–food, and drug–disease interaction resource.", url: "https://ddinter2.scbdd.com/" },
             { name: "ChemFH", description: "Screening for frequent false positives in chemical biology.", url: "https://chemfh.scbdd.com/" },
@@ -81,6 +82,7 @@ const PROFILE: Record<Lang, ProfileData> = {
             { title: "LLM 增强的科研工作流", focus: "面向药物发现流程的大语言模型智能体。" },
         ],
         platforms: [
+            { name: "DeepCYP", description: "CYP450 代谢通路–位点–产物的端到端预测。", url: "https://deepcyp.scbdd.com/" },
             { name: "ADMETlab 3.0", description: "带 API 与决策支持的 ADMET 预测平台。", url: "https://admetlab3.scbdd.com/" },
             { name: "DDInter 2.0", description: "药物–药物、药物–食物与药物–疾病相互作用资源。", url: "https://ddinter2.scbdd.com/" },
             { name: "ChemFH", description: "化学生物学中的高频假阳性筛查。", url: "https://chemfh.scbdd.com/" },
