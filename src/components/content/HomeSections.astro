@@ -11,7 +11,7 @@ const profile = getProfile(locale);
 ---
 
 <section class="home-section">
-    <h2 class="section-heading">{t("home.research")}</h2>
+    <h2 class="section-heading"><span class="section-emoji">🧬</span>{t("home.research")}</h2>
     <ul class="plain-list">
         {profile.research.map((area) => (
             <li class="plain-row">
@@ -23,7 +23,7 @@ const profile = getProfile(locale);
 </section>
 
 <section class="home-section">
-    <h2 class="section-heading">{t("home.platforms")}</h2>
+    <h2 class="section-heading"><span class="section-emoji">🚀</span>{t("home.platforms")}</h2>
     <ul class="plain-list">
         {profile.platforms.map((p) => (
             <li class="plain-row">

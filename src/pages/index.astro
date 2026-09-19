@@ -35,20 +35,20 @@ const selected = (await getCollection("publications"))
             <p class="home-proof">{profile.proof}</p>
         </header>
 
+        <section class="home-section">
+            <h2 class="section-heading"><span class="section-emoji">📰</span>{t("news.title")}</h2>
+            <NewsList limit={6} />
+        </section>
+
         {selected.length > 0 && (
             <section class="home-section">
                 <div class="section-heading-row">
-                    <h2 class="section-heading">{t("home.selected")}</h2>
+                    <h2 class="section-heading"><span class="section-emoji">📚</span>{t("home.selected")}</h2>
                     <a class="section-more" href="/publications">{t("home.all")}</a>
                 </div>
                 <BibliographyList entries={selected} locale={locale} />
             </section>
         )}
-
-        <section class="home-section">
-            <h2 class="section-heading">{t("news.title")}</h2>
-            <NewsList limit={6} />
-        </section>
 
         <HomeSections locale={locale} />
     </div>
